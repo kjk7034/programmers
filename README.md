@@ -29,7 +29,7 @@
 
 ## 단계별 작업 정리
 
-* [레벨 1단계](AlgorithmPractice/level1) **진행 중**
+*  **[레벨 1단계](AlgorithmPractice/level1) 진행 중**
 * 레벨 2단계
 * 레벨 3단계
 * 레벨 4단계

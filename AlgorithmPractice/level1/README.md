@@ -266,3 +266,70 @@ function numPY(s){
 	return (pCount === yCount) ? true : false
 }
 ```
+
+## 12. 행렬의 덧셈 (SumMatrix.js)
+
+```
+function sumMatrix(A,B){
+	const answer = [];
+	const ASize = A.length
+	for (let i=0; i < ASize;i++) {
+		const row = []
+		const rowSize = A[i].length
+		for (let j=0; j < rowSize;j++) {
+			row.push(A[i][j] + B[i][j])
+		}
+		answer.push(row)
+	}
+	return answer;
+}
+
+console.log(sumMatrix([[1,2], [2,3]], [[3,4],[5,6]]))
+```
+
+위와 같이 2중 for문으로 작성을 했다. 다른 사람들 코드를 보니, 나와 비슷하게 작업한 사람들도 있지만 Array.map을 사용한 사람들이 꽤 많았다.
+
+보통 map은 데이터 배열을 새로 만들때 자주 사용했는데, 이 케이스에서는 왜 안떠올랐지 ...
+
+ㅠ.ㅜ 아직 많이 부족하다...
+
+다음과 같이 map을 통해서 간단하게 작업할 수 있었다.
+
+```
+function sumMatrix(A,B){
+	return A.map((a,i) => a.map((b,j) => b + B[i][j]));
+}
+```
+
+map이 익숙하지 않은 사람은 여기에서 [자바스크립트에서 당장 사용해야 할 5가지의 배열 메소드들 (Array)](http://blog.kazikai.net/?p=16)를 한번 쯤 보고 가면 좋을 것 같다.
+
+## 13. 약수의 합 (SumDivisor.js)
+
+```
+function sumDivisor(num) {
+	const arr = []
+	for(let i = 1;i <= num;i++){
+		if(num % i === 0) {
+			arr.push(i)
+		}
+	}
+	return arr.reduce((a, b) => a+b)
+}
+
+console.log(sumDivisor(12));
+```
+
+나는 문제에서 "12의 약수는 [1, 2, 3, 4, 6, 12]가 되고"를 통해서 배열을 만들어서 해당 배열을 더해줬는데,
+
+다른 사람들 코드를 보니 나와 같이 배열을 만들어 사용한 사람도 있었고, 다음과 같이 for문에서 그냥 sum을 해서 return 해주는 사람들도 있었다.
+
+```
+function sumDivisor(num) {
+	var answer = 0;
+	for(var i = 1; i <= num; i++) {
+		if(num % i == 0) answer += i;
+	}
+	return answer;
+}
+```
+
