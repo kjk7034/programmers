@@ -333,3 +333,58 @@ function sumDivisor(num) {
 }
 ```
 
+## 14. 최대공약수와 최소공배수 (GcdLcm.js)
+
+```
+function gcdlcm(a, b) {
+	let gcd, lcm
+	for(let i = 1; i <= Math.min(a, b); i++)    {
+		if(a % i == 0 && b % i == 0){
+			gcd = i;
+		}
+	}
+	lcm = a * b / gcd
+	return [gcd, lcm];
+}
+
+console.log(gcdlcm(3,12));
+```
+
+ 최대공약수와 최소공배수... 이 단어를 몇년만에 들어보는지 가물가물...
+
+ 구하는 공식은 기억도 안나고 결국 1부터 작은 수까지 반복문을 돌려서 최대 공약수를 구하고, 이를 이용하여 최소공배수를 구했다.
+
+ 이제 다른 사람들 코드도 봐야 겠지만 최대공약수를 구하는 다른 방법을 찾다보니 **[유클리드 호제법 (Euclidean algorithm)](https://ko.wikipedia.org/wiki/%EC%9C%A0%ED%81%B4%EB%A6%AC%EB%93%9C_%ED%98%B8%EC%A0%9C%EB%B2%95)**이라는 것이 있었다.
+
+ 음... 분명 공부했었겠지만... 기억이 안난다... ㅎㅎ;
+
+ 2개의 자연수 또는 정식(整式)의 최대공약수를 구하는 알고리즘의 하나. 이를 이용해보기로 하고 다시 다음과 같이 함수 작성.
+
+```
+function gcdFunc(a, b) {
+	return b ? gcdFunc(b, a % b) : a;
+}
+
+function gcdlcm(a, b) {
+	let gcd, lcm
+	gcd = gcdFunc(Math.max(a,b), Math.min(a,b))
+	lcm = a * b / gcd
+	return [gcd, lcm];
+}
+
+console.log(gcdlcm(3,12));
+```
+
+다른 사람들 코드를 보니 반복문 보다는 유클리드 호제법으로 작성한 사람이 많았다. 그리고 나는 gcdFunc에서 Math.max, Math.min으로 큰수, 작은수를 받아 사용했지만, 상관없이 값을 받아서 Math.abs로 절대값을 반환한 사람들도 있었다.
+
+```
+function greatestCommonDivisor(a, b) {return b ? greatestCommonDivisor(b, a % b) : Math.abs(a);}
+function leastCommonMultipleOfTwo(a, b) {return (a * b) / greatestCommonDivisor(a, b);}
+function gcdlcm(a, b) {
+    return [greatestCommonDivisor(a, b),leastCommonMultipleOfTwo(a, b)];
+}
+
+console.log(gcdlcm(3,12));
+```
+
+## 피보나치 수 (Fibonacci.js)
