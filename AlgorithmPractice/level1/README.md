@@ -356,7 +356,7 @@ console.log(gcdlcm(3,12));
 
  이제 다른 사람들 코드도 봐야 겠지만 최대공약수를 구하는 다른 방법을 찾다보니 **[유클리드 호제법 (Euclidean algorithm)](https://ko.wikipedia.org/wiki/%EC%9C%A0%ED%81%B4%EB%A6%AC%EB%93%9C_%ED%98%B8%EC%A0%9C%EB%B2%95)**이라는 것이 있었다.
 
- 음... 분명 공부했었겠지만... 기억이 안난다... ㅎㅎ;
+ 음... 분명 공부했었겠지만... 기억이 안난다...
 
  2개의 자연수 또는 정식(整式)의 최대공약수를 구하는 알고리즘의 하나. 이를 이용해보기로 하고 다시 다음과 같이 함수 작성.
 
@@ -387,4 +387,58 @@ function gcdlcm(a, b) {
 console.log(gcdlcm(3,12));
 ```
 
-## 피보나치 수 (Fibonacci.js)
+## 15. 피보나치 수 (Fibonacci.js)
+
+음... 피보나치 수열이란 이름으로 기억은 하는데 ... 알고리즘은 기억이 안난다 ㅠ.ㅜ
+
+간단하게 문제를 보고 다음과 같이 작성했다.
+
+```
+function fibonacci(num) {
+	if(num < 2) {
+		return num
+	}
+	return fibonacci(num-1) + fibonacci(num-2);
+}
+
+console.log(fibonacci(3))
+```
+
+위와 같이 작성했더니 타임아웃...
+
+결국 다음과 같이 값을 저장해서 해결했다.
+
+```
+function fibonacci(num) {
+	var result = [0, 1]
+	function fib(i) {
+		if(typeof result[i] === "undefined") {
+			result[i] = result[i-1] + result[i-2]
+		}
+		return result[i]
+	}
+	for(let i=0;i<=num;i++) {
+		fib(i)
+	}
+	return result[num]
+}
+
+console.log(fibonacci(3))
+```
+
+다른사람들 코드를 보니 타임아웃한 내 코드와 비슷한데.. 어떻게 통과한건지 모르겠다 ^^;;
+
+내가 작성한 두 함수 중 두번째 함수가 성능이 좋다는 것을 쉽게 알 수 있다.
+
+
+## level1을 마치며...
+
+가장 easy한 level1이 ... 오래 전 공부했던 함수, 행렬 등 수학적인 문제들에서 당황을 여러번했다.
+
+ES6를 간혹 사용하기도 하고 기본적으로 접근해보기도 하고, 재미있었다.
+
+회사에서 업무중 시간이 남을때 조금씩 하고는 있는데, level1단계가 이정도면 과연... 뒤에는 어떤 내용들이 있으려나...
+
+게임스테이지로 치면 라운드 1인데... ㅎㅎ
+
+이제 level2로 ~~ :)
